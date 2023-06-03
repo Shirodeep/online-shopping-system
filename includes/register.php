@@ -1,17 +1,15 @@
 <body>
     <?php
     include_once('./partials/header.php');
-    include("./partials/dbconnection.php");
-    $upload = 2;
-    if ($inserted) {
+    include_once("./partials/dbconnection.php");
+     $inserted = $_GET["q"];
+    if ($inserted == 1) {
         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
         <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-        <span aria-hidden='true'>&times;</span>
         </button>
         </div>";
     }
-    if ($errorUpdatingIntoDatabase) {
+    else {
         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Holy guacamole!</strong> You should check in on some of those fields below.
       </div>";
@@ -68,4 +66,3 @@
     </div>
     <?php include_once('./partials/footer.php'); ?>
 </body>
-
