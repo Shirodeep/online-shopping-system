@@ -1,6 +1,7 @@
 <body>
     <?php
     include_once('./partials/header.php');
+    $passwordType = "password";
     $inserted = $_GET["q"];
     $p = $_GET["p"];
     if ($inserted == 1  and $inserted != "") {
@@ -8,7 +9,7 @@
         <strong>Success!!!</strong> User created.
         </button>
         </div>";
-    } elseif($inserted == 0) {
+    } elseif ($inserted == 0 and $inserted != "") {
         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <strong>Check Your Form Again!</strong> User exists!!!
                 </div>";
@@ -26,7 +27,7 @@
     <div class="container mr-5" style="width: 130vh;height:max-content; background-color: whitesmoke;">
         <h1 class="h1 pt-2 ">REGISTER</h1>
         <?php $title = "register"; ?>
-        <form action="/includes/register.inc.php" onsubmit="validate()" method="post">
+        <form action="/includes/register.inc.php" onsubmit="return validate()" method="post">
             <div class="form-row ">
                 <div class="col p-3">
                     <div class="form-row">
@@ -56,13 +57,23 @@
             <div class="row p-3">
                 <div class="col">
                     <label for="password">Password</label> &nbsp;
-                    <input class="form-control" type="password" name="password" id="password" required>
+                    <div class="row">
+                        <input class="col form-control" type="password" name="password" id="password" required>
+                        <button class="col-lg-1 btn btn-secondary col-sm-1"type="button" onclick="showandhide('password')">
+                    <i class="bi bi-eye" style="font-size: 3vh;"></i>
+                    </button>
+
+                    </div>
                 </div>
             </div>
             <div class="row p-3">
                 <div class="col">
                     <label for="confirmPassword">Confirm password</label> &nbsp;
-                    <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" required>
+                    <div class="row">
+                        <input class=" col form-control" type="password" name="confirmPassword" id="confirmPassword" required>
+                        <button class="col-lg-1  btn btn-secondary col-sm-1" type="button" onclick="showandhide('confirmPassword')"><i class="bi bi-eye" style="font-size: 3vh;"></i></button>
+
+                    </div>
                 </div>
             </div>
             <div class="row p-3">
@@ -89,3 +100,22 @@
     </div>
     <?php include_once('./partials/footer.php'); ?>
 </body>
+
+<script>
+    function validate() {
+        let password = document.getElementById("password");
+        let confirmPassword = document.getElementById("confirmPassword");
+        if (password != confirmPassword) {
+            alert("password should match")
+            return false;
+        }
+    }
+    function showandhide(data){
+        let showPassword = document.getElementById(data);
+        if(showPassword.type == "password"){
+            showPassword.type = "text";
+        }else{
+            showPassword.type = "password";
+        }
+    }
+</script>
