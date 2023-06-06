@@ -105,7 +105,7 @@
     function validate() {
         let password = document.getElementById("password");
         let confirmPassword = document.getElementById("confirmPassword");
-        if (password != confirmPassword) {
+        if (password == confirmPassword) {
             alert("password should match")
             return false;
         }
