@@ -14,25 +14,41 @@
     <link rel="stylesheet" href="../../public/style.css">
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
-        <a class="navbar-brand col-lg-6" href="../../index.php" style="font-weight: 20px;font-size:40px;font-family: 'Lucida Console', Courier, monospace;">Thikxa</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse col-lg-6" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active" >
-                    <a class="nav-link navigation" href="../../index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navigation" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navigation"href="#">Cart</a>
-                </li>
-            </ul>
-            <div class="navbar-nav ">
+    <a class="navbar-brand col-lg-6" href="../../index.php" style="font-weight: 20px;font-size:40px;font-family: 'Lucida Console', Courier, monospace;">Thikxa</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse col-lg-6" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link navigation" href="../../index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navigation" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navigation" href="#">Cart</a>
+            </li>
+        </ul>
+        <?php if (!$logined) {
+            echo '<div class="navbar-nav ">
                 <a href="/includes/login.php" class="btn btn-outline-success my-2 my-sm-0" type="button">Login</a>
                 <a href="/includes/register.php"class="btn btn-outline-secondary my-2 my-sm-0" type="button">SignUp</a>
-            </div>
-        </div>
-    </nav>
+                </div>';
+        } else {
+            echo '
+            <div class="dropdown show" style="height: 10vh;overflow-y:auto;">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="true">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>';
+        }
+        ?>
+    </div>
+</nav>
