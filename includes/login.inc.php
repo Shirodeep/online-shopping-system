@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 include_once("./partials/dbconnection.php");
 
 $loginId = $_POST["loginid"];
@@ -20,10 +17,11 @@ function checkUserExist($db, $loginId, $loginPassword)
     mysqli_stmt_bind_param($statement, "ss", $loginId, $loginId);
     mysqli_stmt_execute($statement);
     $logindata = mysqli_stmt_get_result($statement);
-    echo "sasasa";
+
     while ($row = mysqli_fetch_assoc($logindata)) {
         $password = $row["passwords"];
         if (password_verify($loginPassword, $password)) {
+            //setting session after  login
             session_start();
             $_SESSION["uname"] = $row["fullname"];
             $_SESSION["uid"] = $row["userid"];
@@ -35,18 +33,3 @@ function checkUserExist($db, $loginId, $loginPassword)
     header("Location: ./login.php?error=true");
     exit();
 }
-    // header("Location: ./login.php");
-    
-    
-    // if(isset($_SESSION["name"])){
-    //  $current = date('d');
-    //  if($_SESSION["time"]){
-
-    //  }
-    // }else{
-
-    //  session_start();
-    //  $_SESSION["name"] = $_POST["username"];
-    //  $_SESSION["time"] = date('d');
-        
-    // }
