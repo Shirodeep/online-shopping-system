@@ -58,7 +58,7 @@
                      <a class="dropdown-item" href="/includes/profile.php">
                          <i class="bi bi-person-circle"></i>Profile
                      </a>
-                     <a class="dropdown-item" href="#">settings</a>
+                     <a class="dropdown-item" href="/includes/settings.php">settings</a>
                      <a class="dropdown-item" href="/includes/logout.php">LogOut</a>
                  </div>
              </div>
