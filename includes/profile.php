@@ -1,4 +1,4 @@
-<?php   
+<?php
 $title = "Profile";
 session_start();
 $uname = $_SESSION["uname"];
@@ -6,7 +6,7 @@ $uid = $_SESSION["uid"];
 if ($uname) {
     include_once("./partials/dbconnection.php");
     include_once("./partials/header.php");
-    $itemsqrr = "SELECT * FROM items WHERE user_id = '$uid'";
+    $itemsqrr = "SELECT * FROM items WHERE uuid = '$uid'";
     $result = mysqli_query($db, $itemsqrr);
 ?>
     <h1>Profile Dashboard</h1>
@@ -20,7 +20,7 @@ if ($uname) {
                 <a href="./editprofile.php" class="btn btn-secondary">Edit profile</a>
             </div>
         </div>
-        <div class="container-md">
+        <div class="container-fluid d-flex flex-row flex-wrap">
             <?php
             if (!mysqli_num_rows($result)) {
             ?>
@@ -28,30 +28,35 @@ if ($uname) {
                     <div class="h3">No items to show <a href="./additems.php">add items here</a></div>
                 </div>
             <?php
-            }
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $name = $row['itemname'];
-                    $rating = $row['itemrating'];
-                    $price = $row['itemprice'];
+            } else {
             ?>
-                    <h1>Our Collections</h1>
-                    <div class="container-fluid p-4 d-flex flex-row flex-wrap">
-                        <a class="items p-1 m-1" href="#" style="color:black; text-decoration: none;border: 1px solid gray; border-radius: 15px;">
-                            <img src="./public/images/thumb.png" height="150" width="150" alt="image">
-                            <div class="row">
-                                <div class="col"><?php echo $name ?></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><?php echo $rating ?></div>
-                            </div>
-                            <div class="row">
-                                <div class="col">रु <?php echo $price ?></div>
-                            </div>
-                        </a>
-                    </div>
+
+                <?php
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $name = $row['iname'];
+                    $ratingCount = $row['irating'];
+                    $price = $row['iprice'];
+                    $image = $row['iimage'];
+                    $image = "/public/images/uploaded/" . $image;
+                ?>
+
+                    <a class="items p-1 m-1" href="#" style="color:black; text-decoration: none;border: 1px solid gray; border-radius: 15px;">
+                        <img src="<?php echo $image ?>" height="150" width="150" alt="image">
+                        <div class="row">
+                            <div class="col"><?php echo $name ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><?php echo $rating ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><strong>रु</strong><?php echo $price ?></div>
+                        </div>
+                    </a>
+
 
             <?php
                 }
+            }
             ?>
         </div>
     </div>
