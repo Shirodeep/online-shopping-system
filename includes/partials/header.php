@@ -37,7 +37,7 @@
                  </li>
              <?php } else { ?>
                 <li class="nav-item">
-                     <a class="nav-link navigation disabled" href="#">Cart</a>
+                     <a class="nav-link navigation disabled" href="../cart.php">Cart</a>
                  </li>
              <?php } ?>
          </ul>
